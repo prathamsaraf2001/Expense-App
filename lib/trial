@@ -1,0 +1,707 @@
+// this is the income page from here//
+
+// class AddIncome extends StatefulWidget {
+//   const AddIncome({Key? key}) : super(key: key);
+
+//   @override
+//   _AddIncomeState createState() => _AddIncomeState();
+// }
+
+// class _AddIncomeState extends State<AddIncome> {
+//   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
+
+//   TextEditingController incomeController = TextEditingController();
+//   TextEditingController categoryController = TextEditingController();
+//   TextEditingController noteController = TextEditingController();
+//   TextEditingController dateController = TextEditingController();
+
+//   String _valueChanged = '';
+//   String _valueToValidate = '';
+//   String _valueSaved = '';
+
+//   final List<Map<String, dynamic>> _items = [
+//     {
+//       'value': 'boxValue',
+//       'label': 'Food',
+//       'icon': Icon(Icons.food_bank),
+//     },
+//     {
+//       'value': 'circleValue',
+//       'label': 'Entertainment',
+//       'icon': Icon(Icons.theater_comedy),
+//       'textStyle': TextStyle(color: Colors.black),
+//     },
+//     {
+//       'value': 'starValue',
+//       'label': 'Travel',
+//       'icon': Icon(Icons.flight),
+//     },
+//     {
+//       'value': 'shopping',
+//       'label': 'Shopping',
+//       'icon': Icon(Icons.shopping_bag),
+//     },
+//     {
+//       'value': 'insurance',
+//       'label': 'Insurance',
+//       'icon': Icon(Icons.document_scanner),
+//     },
+//     {
+//       'value': 'donations',
+//       'label': 'Donations',
+//       'icon': Icon(Icons.money),
+//     },
+//     {
+//       'value': 'medical',
+//       'label': 'Medical',
+//       'icon': Icon(Icons.medical_services),
+//     },
+//     {
+//       'value': 'fees',
+//       'label': 'Fees',
+//       'icon': Icon(Icons.money),
+//     },
+//     {
+//       'value': 'phonebills',
+//       'label': 'Phone Bills',
+//       'icon': Icon(Icons.phone),
+//     },
+//     {
+//       'value': 'tax',
+//       'label': 'Tax',
+//       'icon': Icon(Icons.money),
+//     },
+//     {
+//       'value': 'stationary',
+//       'label': 'Stationary',
+//       'icon': Icon(Icons.brush),
+//     },
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             SizedBox(
+//               height: MediaQuery.of(context).size.height * 0.05,
+//             ),
+//             Text(
+//               "Add Income",
+//               style: TextStyle(
+//                 color: Colors.black,
+//                 fontWeight: FontWeight.bold,
+//                 fontSize: 25,
+//               ),
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+//               child: TextFormField(
+//                 controller: incomeController,
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   fontSize: 40.0,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//                 keyboardType: TextInputType.number,
+//                 decoration: InputDecoration(
+//                   contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+//                   floatingLabelBehavior: FloatingLabelBehavior.always,
+//                   enabledBorder: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(40),
+//                       gapPadding: 2,
+//                       borderSide: BorderSide()),
+//                   focusedBorder: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(40),
+//                       gapPadding: 4,
+//                       borderSide: BorderSide()),
+//                 ),
+//               ),
+//             ),
+//             Form(
+//               key: _oFormKey,
+//               child: Column(
+//                 children: <Widget>[
+//                   SizedBox(
+//                     height: MediaQuery.of(context).size.height * 0.05,
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+//                     child: SelectFormField(
+//                       controller: categoryController,
+//                       decoration: InputDecoration(
+//                         contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//                         // enabledBorder: OutlineInputBorder(
+//                         //     borderRadius: BorderRadius.circular(20),
+//                         //     gapPadding: 2,
+//                         //     borderSide: BorderSide()),
+//                         // focusedBorder: OutlineInputBorder(
+//                         //     borderRadius: BorderRadius.circular(20),
+//                         //     gapPadding: 4,
+//                         //     borderSide: BorderSide()),
+//                         hintText: '   Category',
+//                         hintStyle: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                         prefixIcon: Image.asset(
+//                           "assets/icons/category.png",
+//                           scale: 20,
+//                         ),
+//                       ),
+//                       type: SelectFormFieldType.dialog,
+//                       //initialValue: _initialValue,
+//                       icon: Icon(Icons.format_shapes),
+
+//                       changeIcon: true,
+//                       dialogTitle: 'Pick a item',
+//                       dialogCancelBtn: 'CANCEL',
+//                       enableSearch: true,
+//                       dialogSearchHint: 'Search item',
+//                       items: _items,
+//                       onChanged: (val) => setState(() => _valueChanged = val),
+//                       validator: (val) {
+//                         setState(() => _valueToValidate = val ?? '');
+//                         return null;
+//                       },
+//                       onSaved: (val) => setState(() => _valueSaved = val ?? ''),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: MediaQuery.of(context).size.height * 0.01,
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+//                     child: TextFormField(
+//                       controller: noteController,
+//                       decoration: InputDecoration(
+//                         contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//                         hintText: 'Note',
+//                         hintStyle: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                         prefixIcon: Image.asset(
+//                           "assets/icons/notes.png",
+//                           scale: 19,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: MediaQuery.of(context).size.height * 0.01,
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+//                     child: DateTimePicker(
+//                       type: DateTimePickerType.date,
+//                       dateMask: 'd MMM, yyyy',
+//                       initialValue: DateTime.now().toString(),
+//                       firstDate: DateTime(2000),
+//                       lastDate: DateTime(2100),
+//                       icon: Image.asset(
+//                         "assets/icons/calendar.png",
+//                         scale: 20,
+//                       ),
+//                       dateLabelText: 'Date',
+//                       timeLabelText: "Hour",
+//                       selectableDayPredicate: (date) {
+//                         // Disable weekend days to select from the calendar
+//                         if (date.weekday == 6 || date.weekday == 7) {
+//                           return false;
+//                         }
+
+//                         return true;
+//                       },
+//                       onChanged: (val) => print(val),
+//                       validator: (val) {
+//                         print(val);
+//                         return null;
+//                       },
+//                       onSaved: (val) => print(val),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             SizedBox(
+//               height: MediaQuery.of(context).size.height * 0.3,
+//             ),
+//             ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//                 padding: EdgeInsets.fromLTRB(120, 15, 120, 15),
+//               ),
+//               onPressed: () {
+//                 _sendDataToSecondScreen(context);
+//               },
+//               child: Text("Save"),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+
+//   void _sendDataToSecondScreen(BuildContext context) {
+//     String income = incomeController.text;
+//     String category = categoryController.text;
+//     String note = noteController.text;
+//     Navigator.push(
+//         context,
+//         MaterialPageRoute(
+//           builder: (context) => Expense(
+//             text4: income,
+//             text5: category,
+//             text6: note,
+//             text1: '',
+//             text2: '',
+//             text3: '',
+//           ),
+//         ));
+//   }
+// }
+
+// class OpenPassword extends StatefulWidget {
+//   const OpenPassword({Key? key}) : super(key: key);
+
+//   @override
+//   _OpenPasswordState createState() => _OpenPasswordState();
+// }
+
+// final controller = PageController(initialPage: 0);
+// GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
+
+// TextEditingController expenseController = TextEditingController();
+// TextEditingController categoryController = TextEditingController();
+// TextEditingController noteController = TextEditingController();
+// TextEditingController dateController = TextEditingController();
+// TextEditingController incomeController = TextEditingController();
+
+// String _valueChanged = '';
+// String _valueToValidate = '';
+// String _valueSaved = '';
+
+// final List<Map<String, dynamic>> _items = [
+//   {
+//     'value': 'boxValue',
+//     'label': 'Food',
+//     'icon': Icon(Icons.food_bank),
+//   },
+//   {
+//     'value': 'circleValue',
+//     'label': 'Entertainment',
+//     'icon': Icon(Icons.theater_comedy),
+//     'textStyle': TextStyle(color: Colors.black),
+//   },
+//   {
+//     'value': 'starValue',
+//     'label': 'Travel',
+//     'icon': Icon(Icons.flight),
+//   },
+//   {
+//     'value': 'shopping',
+//     'label': 'Shopping',
+//     'icon': Icon(Icons.shopping_bag),
+//   },
+//   {
+//     'value': 'insurance',
+//     'label': 'Insurance',
+//     'icon': Icon(Icons.document_scanner),
+//   },
+//   {
+//     'value': 'donations',
+//     'label': 'Donations',
+//     'icon': Icon(Icons.money),
+//   },
+//   {
+//     'value': 'medical',
+//     'label': 'Medical',
+//     'icon': Icon(Icons.medical_services),
+//   },
+//   {
+//     'value': 'fees',
+//     'label': 'Fees',
+//     'icon': Icon(Icons.money),
+//   },
+//   {
+//     'value': 'phonebills',
+//     'label': 'Phone Bills',
+//     'icon': Icon(Icons.phone),
+//   },
+//   {
+//     'value': 'tax',
+//     'label': 'Tax',
+//     'icon': Icon(Icons.money),
+//   },
+//   {
+//     'value': 'stationary',
+//     'label': 'Stationary',
+//     'icon': Icon(Icons.brush),
+//   },
+// ];
+
+// class _OpenPasswordState extends State<OpenPassword> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Scaffold(
+//         body: Padding(
+//           padding: const EdgeInsets.all(15.0),
+//           child: SingleChildScrollView(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: [
+//                 SizedBox(
+//                   height: 19,
+//                 ),
+//                 Row(
+//                   children: [
+//                     // Text(
+//                     //   "The Platform",
+//                     //   textAlign: TextAlign.left,
+//                     //   style: TextStyle(
+//                     //     color: Colors.black54,
+//                     //     fontSize: 20,
+//                     //     fontWeight: FontWeight.bold,
+//                     //     fontFamily: 'ProximaSoft',
+//                     //   ),
+//                     // ),
+//                   ],
+//                 ),
+//                 Form(
+//                   key: _oFormKey,
+//                   child: Column(
+//                     children: <Widget>[
+//                       SizedBox(
+//                         height: MediaQuery.of(context).size.height * 0.05,
+//                       ),
+//                       Padding(
+//                         padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+//                         child: SelectFormField(
+//                           controller: categoryController,
+//                           decoration: InputDecoration(
+//                             contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//                             // enabledBorder: OutlineInputBorder(
+//                             //     borderRadius: BorderRadius.circular(20),
+//                             //     gapPadding: 2,
+//                             //     borderSide: BorderSide()),
+//                             // focusedBorder: OutlineInputBorder(
+//                             //     borderRadius: BorderRadius.circular(20),
+//                             //     gapPadding: 4,
+//                             //     borderSide: BorderSide()),
+//                             hintText: '   Category',
+//                             hintStyle: TextStyle(
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                             prefixIcon: Image.asset(
+//                               "assets/icons/category.png",
+//                               scale: 20,
+//                             ),
+//                           ),
+//                           type: SelectFormFieldType.dialog,
+//                           //initialValue: _initialValue,
+//                           icon: Icon(Icons.format_shapes),
+
+//                           changeIcon: true,
+//                           dialogTitle: 'Pick a item',
+//                           dialogCancelBtn: 'CANCEL',
+//                           enableSearch: true,
+//                           dialogSearchHint: 'Search item',
+//                           items: _items,
+//                           onChanged: (val) =>
+//                               setState(() => _valueChanged = val),
+//                           validator: (val) {
+//                             setState(() => _valueToValidate = val ?? '');
+//                             return null;
+//                           },
+//                           onSaved: (val) =>
+//                               setState(() => _valueSaved = val ?? ''),
+//                         ),
+//                       ),
+//                       SizedBox(
+//                         height: MediaQuery.of(context).size.height * 0.01,
+//                       ),
+//                       Padding(
+//                         padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+//                         child: TextFormField(
+//                           controller: noteController,
+//                           decoration: InputDecoration(
+//                             contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//                             hintText: 'Note',
+//                             hintStyle: TextStyle(
+//                               fontWeight: FontWeight.bold,
+//                             ),
+//                             prefixIcon: Image.asset(
+//                               "assets/icons/notes.png",
+//                               scale: 19,
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       SizedBox(
+//                         height: MediaQuery.of(context).size.height * 0.01,
+//                       ),
+//                       Padding(
+//                         padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+//                         child: DateTimePicker(
+//                           type: DateTimePickerType.date,
+//                           dateMask: 'd MMM, yyyy',
+//                           initialValue: DateTime.now().toString(),
+//                           firstDate: DateTime(2000),
+//                           lastDate: DateTime(2100),
+//                           icon: Image.asset(
+//                             "assets/icons/calendar.png",
+//                             scale: 20,
+//                           ),
+//                           dateLabelText: 'Date',
+//                           timeLabelText: "Hour",
+//                           selectableDayPredicate: (date) {
+//                             // Disable weekend days to select from the calendar
+//                             if (date.weekday == 6 || date.weekday == 7) {
+//                               return false;
+//                             }
+
+//                             return true;
+//                           },
+//                           onChanged: (val) => print(val),
+//                           validator: (val) {
+//                             print(val);
+//                             return null;
+//                           },
+//                           onSaved: (val) => print(val),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+
+//                 // prefixIcon: Padding(
+//                 //   padding: const EdgeInsets.all(8.0),
+//                 //   child: Image.asset(
+//                 //     "assets/icons/password.gif",
+//                 //     height: 10,
+//                 //     scale: 8,
+//                 //   ),
+//                 // ),
+
+//                 // validator: (String noteDescription) {
+//                 //   if (noteDescription.isEmpty) {
+//                 //     return "Please enter Note Desc";
+//                 //   } else if (noteDescription.startsWith(" ")) {
+//                 //     return "Please avoid whitespaces";
+//                 //   }
+//                 // },
+//               ],
+//             ),
+//           ),
+//         ),
+//         appBar: AppBar(
+//           automaticallyImplyLeading: true,
+//           backgroundColor: Colors.white,
+//           elevation: 0,
+//           iconTheme: IconThemeData(color: Colors.teal[500]),
+//           title: SizedBox(
+//             child: Text(
+//               "Your Password",
+//               textAlign: TextAlign.left,
+//               style: TextStyle(
+//                 color: Colors.teal[400],
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//                 fontFamily: 'ProximaSoft',
+//               ),
+//             ),
+//           ),
+//         ),
+//         backgroundColor: Colors.white,
+//         // endDrawer: Container(
+//         //   width: 250,
+//         //   child: Drawer(
+//         //     child: ListView(
+//         //       padding: EdgeInsets.all(0),
+//         //       children: [
+//         //         SizedBox(
+//         //           height: 0,
+//         //         ),
+//         //         Container(
+//         //           height: 200,
+//         //           child: DrawerHeader(
+//         //             decoration: BoxDecoration(color: Colors.teal[200]),
+//         //             child: Stack(
+//         //               children: <Widget>[
+//         //                 Positioned(
+//         //                   bottom: 50,
+//         //                   left: 0,
+//         //                   child: CircleAvatar(
+//         //                     radius: 40,
+//         //                     // minRadius: 5,
+//         //                     // maxRadius: 10,
+//         //                     backgroundColor: Colors.transparent,
+//         //                     child: CircleAvatar(
+//         //                       radius: 100,
+//         //                     ),
+//         //                   ),
+//         //                 ),
+//         //                 Positioned(
+//         //                   top: 110,
+//         //                   left: 0,
+//         //                   child: Text(
+//         //                     "Profile Name",
+//         //                     textAlign: TextAlign.center,
+//         //                     style: TextStyle(
+//         //                       fontWeight: FontWeight.bold,
+//         //                       fontSize: 20,
+//         //                     ),
+//         //                   ),
+//         //                 ),
+//         //               ],
+//         //             ),
+//         //           ),
+//         //         ),
+//         //         SizedBox(
+//         //           height: 10,
+//         //         ),
+//         //         ListTile(
+//         //           hoverColor: Colors.teal[200],
+//         //           focusColor: Colors.teal[200],
+//         //           leading: Image.asset(
+//         //             "assets/icons/username.png",
+//         //             scale: 6,
+//         //           ),
+//         //           title: const Text(
+//         //             '  Profile',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 10,
+//         //         ),
+//         //         ListTile(
+//         //           leading: Image.asset(
+//         //             "assets/icons/about.gif",
+//         //             scale: 8,
+//         //           ),
+//         //           title: const Text(
+//         //             '  About',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 10,
+//         //         ),
+//         //         ListTile(
+//         //           leading: Image.asset(
+//         //             "assets/icons/settings.gif",
+//         //             scale: 8,
+//         //           ),
+//         //           title: const Text(
+//         //             '  Settings',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 10,
+//         //         ),
+//         //         ListTile(
+//         //           leading: Image.asset(
+//         //             "assets/icons/log-out.png",
+//         //             height: 25,
+//         //           ),
+//         //           title: const Text(
+//         //             '  Sign Out',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 120,
+//         //         ),
+//         //         Divider(
+//         //           color: Colors.teal[200],
+//         //           indent: 10,
+//         //           endIndent: 10,
+//         //           thickness: 3,
+//         //         ),
+//         //         SizedBox(
+//         //           height: 20,
+//         //         ),
+//         //         ListTile(
+//         //           title: const Text(
+//         //             '  Share',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           leading: Image.asset(
+//         //             "assets/icons/share.png",
+//         //             height: 25,
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 10,
+//         //         ),
+//         //         ListTile(
+//         //           leading: Image.asset(
+//         //             "assets/icons/feedback.png",
+//         //             height: 35,
+//         //             scale: 3,
+//         //           ),
+//         //           title: const Text(
+//         //             '  Feedback',
+//         //             style: TextStyle(
+//         //                 fontFamily: 'ProximaSoft',
+//         //                 fontSize: 15,
+//         //                 fontWeight: FontWeight.bold,
+//         //                 color: Colors.black54),
+//         //           ),
+//         //           onTap: () {
+//         //             // Update the state of the app.
+//         //             // ...
+//         //           },
+//         //         ),
+//         //         SizedBox(
+//         //           height: 90,
+//         //         ),
+//         //       ],
+//         //     ),
+//         //   ),
+//       ),
+//     );
+//   }
+// }
